@@ -36,6 +36,25 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
+    const centerCursorCommand = vscode.commands.registerCommand(
+        'emacs.centerCursor',
+        () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+
+            centerCursor(editor);
+        }
+    );
+
+    const centerCursorOtherCommand = vscode.commands.registerCommand(
+        'emacs.centerCursorOther',
+        () => {
+            centerCursorOther();
+        }
+    );
+
     // Reset state when document changes or cursor moves
     vscode.window.onDidChangeTextEditorSelection((e) => {
         if (dabbrevState && e.textEditor === vscode.window.activeTextEditor) {
@@ -47,7 +66,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(dabbrevExpandCommand, selectLineCommand);
+    context.subscriptions.push(dabbrevExpandCommand, selectLineCommand, centerCursorCommand, centerCursorOtherCommand);
 }
 
 async function dabbrevExpand(editor: vscode.TextEditor) {
@@ -149,6 +168,42 @@ function selectLine(editor: vscode.TextEditor) {
 
     // Set the selection with anchor at start and active at end
     editor.selection = new vscode.Selection(start, end);
+}
+
+function centerCursor(editor: vscode.TextEditor) {
+    const position = editor.selection.active;
+
+    // Use VSCode's built-in revealLine command with 'InCenter' option
+    // This centers the current line in the viewport
+    editor.revealRange(
+        new vscode.Range(position, position),
+        vscode.TextEditorRevealType.InCenter
+    );
+}
+
+function centerCursorOther() {
+    const activeEditor = vscode.window.activeTextEditor;
+    if (!activeEditor) {
+        return;
+    }
+
+    // Get all visible text editors
+    const visibleEditors = vscode.window.visibleTextEditors;
+
+    // Find the "other" editor - first visible editor that's not the active one
+    const otherEditor = visibleEditors.find(editor => editor !== activeEditor);
+
+    if (!otherEditor) {
+        vscode.window.showInformationMessage('No other visible editor found');
+        return;
+    }
+
+    // Center the cursor in the other editor
+    const position = otherEditor.selection.active;
+    otherEditor.revealRange(
+        new vscode.Range(position, position),
+        vscode.TextEditorRevealType.InCenter
+    );
 }
 
 export function deactivate() {}

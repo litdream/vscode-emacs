@@ -4,6 +4,14 @@ Emacs keybindings and features for Visual Studio Code.
 
 ## Features
 
+### Center Cursor in View (recenter)
+
+Press `Ctrl+Shift+R` then `Ctrl+L` to center the current line in the editor viewport. This is useful for bringing context into view when working at the top or bottom of the screen.
+
+### Center Cursor in Other Window
+
+Press `Ctrl+Shift+R` then `Ctrl+Shift+L` to center the cursor in the other visible editor window. Useful when working with side-by-side editors to bring context into view in the non-active window without switching focus.
+
 ### Select Current Line
 
 Press `Ctrl+Shift+R` then `Ctrl+Space` to select the entire current line. The line will be highlighted and ready for copy (`Ctrl+C`) or cut (`Ctrl+X`) operations.
@@ -59,6 +67,8 @@ calc<Ctrl+Shift+R Alt+/> → calculateTotal (press again to cycle)
 
 | Key | Command | Description |
 |-----|---------|-------------|
+| `Ctrl+Shift+R` `Ctrl+L` | recenter | Center cursor in active window |
+| `Ctrl+Shift+R` `Ctrl+Shift+L` | recenter-other | Center cursor in other window |
 | `Ctrl+Shift+R` `Ctrl+Space` | select-line | Select the entire current line |
 | `Ctrl+Shift+R` `Alt+/` | dabbrev-expand | Dynamic abbreviation expansion |
 

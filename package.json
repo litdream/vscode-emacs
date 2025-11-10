@@ -21,6 +21,14 @@
       {
         "command": "emacs.selectLine",
         "title": "Emacs: Select Current Line"
+      },
+      {
+        "command": "emacs.centerCursor",
+        "title": "Emacs: Center Cursor in View (recenter)"
+      },
+      {
+        "command": "emacs.centerCursorOther",
+        "title": "Emacs: Center Cursor in Other Window"
       }
     ],
     "keybindings": [
@@ -32,6 +40,16 @@
       {
         "command": "emacs.selectLine",
         "key": "ctrl+shift+r ctrl+space",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "emacs.centerCursor",
+        "key": "ctrl+shift+r ctrl+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "emacs.centerCursorOther",
+        "key": "ctrl+shift+r ctrl+shift+l",
         "when": "editorTextFocus"
       }
     ]

@@ -37,6 +37,8 @@ The extension is activated via `src/extension.ts`, which exports the standard VS
 ### Command Registration
 
 Commands are registered in `package.json` under `contributes.commands` and bound to keybindings in `contributes.keybindings`. The current implementation registers:
+- `emacs.centerCursor` - bound to `Ctrl+Shift+R` then `Ctrl+L`
+- `emacs.centerCursorOther` - bound to `Ctrl+Shift+R` then `Ctrl+Shift+L`
 - `emacs.selectLine` - bound to `Ctrl+Shift+R` then `Ctrl+Space`
 - `emacs.dabbrevExpand` - bound to `Ctrl+Shift+R` then `Alt+/`
 
@@ -67,6 +69,27 @@ The `selectLine` function provides a simple way to select the entire current lin
 3. Sets the editor selection, leaving the line highlighted for copy/cut operations
 
 This mimics the Emacs behavior of selecting a line for subsequent operations.
+
+### Center Cursor Implementation (src/extension.ts)
+
+The `centerCursor` function centers the current line in the viewport (src/extension.ts:173):
+
+1. Gets the current cursor position
+2. Uses VSCode's built-in `editor.revealRange()` method with `TextEditorRevealType.InCenter`
+3. This scrolls the viewport to center the current line
+
+This is a wrapper around VSCode's native functionality, replicating Emacs' `recenter` command (Ctrl+L).
+
+### Center Cursor Other Implementation (src/extension.ts)
+
+The `centerCursorOther` function centers the cursor in the non-active editor window (src/extension.ts:184):
+
+1. Gets the active editor and all visible editors
+2. Finds the first visible editor that is not the active one
+3. Centers that editor's cursor position using the same `revealRange()` method
+4. Shows a message if no other visible editor is found
+
+This is useful for split-screen editing where you want to center the view in the other pane without switching focus to it.
 
 ### TypeScript Configuration
 
