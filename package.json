@@ -21,7 +21,7 @@
     "keybindings": [
       {
         "command": "emacs.dabbrevExpand",
-        "key": "alt+/",
+        "key": "ctrl+shift+r alt+/",
         "when": "editorTextFocus"
       }
     ]

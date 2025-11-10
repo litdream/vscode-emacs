@@ -6,20 +6,20 @@ Emacs keybindings and features for Visual Studio Code.
 
 ### Dynamic Abbreviation Expansion (dabbrev-expand)
 
-Press `Alt+/` to autocomplete based on words that appear earlier in the current document.
+Press `Ctrl+Shift+R` then `Alt+/` to autocomplete based on words that appear earlier in the current document.
 
 **How it works:**
 - Type a few characters of a word
-- Press `Alt+/` to expand to the most recent matching word in the document
-- Press `Alt+/` repeatedly to cycle through other matches (going backwards through the document)
+- Press `Ctrl+Shift+R` followed by `Alt+/` to expand to the most recent matching word in the document
+- Press the same key sequence repeatedly to cycle through other matches (going backwards through the document)
 
 **Example:**
 ```
 function calculateTotal() { ... }
 function calculateAverage() { ... }
 
-calc<Alt+/> → calculateAverage
-calc<Alt+/> → calculateTotal (press again to cycle)
+calc<Ctrl+Shift+R Alt+/> → calculateAverage
+calc<Ctrl+Shift+R Alt+/> → calculateTotal (press again to cycle)
 ```
 
 ## Installation
@@ -55,7 +55,7 @@ calc<Alt+/> → calculateTotal (press again to cycle)
 
 | Key | Command | Description |
 |-----|---------|-------------|
-| `Alt+/` | dabbrev-expand | Dynamic abbreviation expansion |
+| `Ctrl+Shift+R` `Alt+/` | dabbrev-expand | Dynamic abbreviation expansion |
 
 ## Roadmap
 
