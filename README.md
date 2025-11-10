@@ -4,6 +4,10 @@ Emacs keybindings and features for Visual Studio Code.
 
 ## Features
 
+### Select Current Line
+
+Press `Ctrl+Shift+R` then `Ctrl+Space` to select the entire current line. The line will be highlighted and ready for copy (`Ctrl+C`) or cut (`Ctrl+X`) operations.
+
 ### Dynamic Abbreviation Expansion (dabbrev-expand)
 
 Press `Ctrl+Shift+R` then `Alt+/` to autocomplete based on words that appear earlier in the current document.
@@ -55,6 +59,7 @@ calc<Ctrl+Shift+R Alt+/> → calculateTotal (press again to cycle)
 
 | Key | Command | Description |
 |-----|---------|-------------|
+| `Ctrl+Shift+R` `Ctrl+Space` | select-line | Select the entire current line |
 | `Ctrl+Shift+R` `Alt+/` | dabbrev-expand | Dynamic abbreviation expansion |
 
 ## Roadmap

@@ -37,6 +37,7 @@ The extension is activated via `src/extension.ts`, which exports the standard VS
 ### Command Registration
 
 Commands are registered in `package.json` under `contributes.commands` and bound to keybindings in `contributes.keybindings`. The current implementation registers:
+- `emacs.selectLine` - bound to `Ctrl+Shift+R` then `Ctrl+Space`
 - `emacs.dabbrevExpand` - bound to `Ctrl+Shift+R` then `Alt+/`
 
 **Keybinding Strategy**: This extension uses a prefix-based keybinding system to avoid conflicts with existing VSCode shortcuts. All Emacs features use `Ctrl+Shift+R` as a prefix key, followed by a second key. This is implemented using VSCode's built-in chord support (space-separated keys in the keybinding definition).
@@ -56,6 +57,16 @@ The `dabbrevExpand` function implements stateful abbreviation expansion:
 3. **Cycling Behavior**: Repeated invocations cycle through matches if the prefix and document version haven't changed
 
 4. **State Reset**: Selection change listeners reset state when the cursor moves away from the expansion position
+
+### Select Line Implementation (src/extension.ts)
+
+The `selectLine` function provides a simple way to select the entire current line:
+
+1. Gets the current cursor position and line
+2. Creates a selection from the beginning of the line (column 0) to the end of the line
+3. Sets the editor selection, leaving the line highlighted for copy/cut operations
+
+This mimics the Emacs behavior of selecting a line for subsequent operations.
 
 ### TypeScript Configuration
 

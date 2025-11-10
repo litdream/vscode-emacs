@@ -17,12 +17,21 @@
       {
         "command": "emacs.dabbrevExpand",
         "title": "Emacs: Dynamic Abbreviation Expand (dabbrev-expand)"
+      },
+      {
+        "command": "emacs.selectLine",
+        "title": "Emacs: Select Current Line"
       }
     ],
     "keybindings": [
       {
         "command": "emacs.dabbrevExpand",
         "key": "ctrl+shift+r alt+/",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "emacs.selectLine",
+        "key": "ctrl+shift+r ctrl+space",
         "when": "editorTextFocus"
       }
     ]

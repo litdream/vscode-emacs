@@ -24,6 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
+    const selectLineCommand = vscode.commands.registerCommand(
+        'emacs.selectLine',
+        () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+
+            selectLine(editor);
+        }
+    );
+
     // Reset state when document changes or cursor moves
     vscode.window.onDidChangeTextEditorSelection((e) => {
         if (dabbrevState && e.textEditor === vscode.window.activeTextEditor) {
@@ -35,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(dabbrevExpandCommand);
+    context.subscriptions.push(dabbrevExpandCommand, selectLineCommand);
 }
 
 async function dabbrevExpand(editor: vscode.TextEditor) {
@@ -125,6 +137,18 @@ function findMatches(
 
 function escapeRegex(str: string): string {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function selectLine(editor: vscode.TextEditor) {
+    const position = editor.selection.active;
+    const line = editor.document.lineAt(position.line);
+
+    // Create selection from start to end of line
+    const start = new vscode.Position(line.lineNumber, 0);
+    const end = new vscode.Position(line.lineNumber, line.text.length);
+
+    // Set the selection with anchor at start and active at end
+    editor.selection = new vscode.Selection(start, end);
 }
 
 export function deactivate() {}
