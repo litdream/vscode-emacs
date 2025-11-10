@@ -1,0 +1,26 @@
+# Dependencies
+node_modules
+
+# Compiled output
+out
+dist
+
+# Extension packages
+*.vsix
+
+# VSCode test workspace
+.vscode-test
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+*.swp
+*.swo
+*~
+.vscode

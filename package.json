@@ -1,0 +1,40 @@
+{
+  "name": "vscode-emacs",
+  "displayName": "Emacs Keybindings",
+  "description": "Emacs features and keybindings for VSCode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Keymaps"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "emacs.dabbrevExpand",
+        "title": "Emacs: Dynamic Abbreviation Expand (dabbrev-expand)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "emacs.dabbrevExpand",
+        "key": "alt+/",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.2.0"
+  }
+}
